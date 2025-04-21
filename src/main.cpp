@@ -105,20 +105,45 @@ int main()
   *                 /     \ 
   *    (-0.5,-0.5) <-------> (0.5,-0.5)
   */
-  //this will be passed into the vertex shader to form the shape
+  //this will be passed into the vertex shader to form the triangle
+  // float vertices[] = {
+  //   //x     y      z
+  //   -0.5f, -0.5f, 0.0f, //bttm left
+  //    0.5f, -0.5f, 0.0f, //bttm right
+  //    0.0f,  0.5f, 0.0f //top
+  // };
+  //now lets make a square (naively)
+  // float vertices2[] = {
+  //   //x     y      z
+  //   //1st triangle
+  //   -0.5f, 0.5f, 0.0f, //top right
+  //    0.5f,-0.5f, 0.0f, //bottom right
+  //   -0.5f, 0.5f, 0.0f, //top left
+  //   //2nd triangle
+  //    0.5f,-0.5f, 0.0f, //bttm right
+  //   -0.5f,-0.5f, 0.0f, //bttm left 
+  //   -0.5f, 0.5f, 0.0f //top left
+  // };
+  //to reduce overhead: Element Buffer Object
   float vertices[] = {
-    //x     y      z
-    -0.5f, -0.5f, 0.0f, //bttm left
-     0.5f, -0.5f, 0.0f, //bttm right
-     0.0f,  0.5f, 0.0f //top
+     0.5f,  0.5f, 0.0f, // top right
+     0.5f, -0.5f, 0.0f, // bottom right
+    -0.5f, -0.5f, 0.0f, // bottom left
+    -0.5f,  0.5f, 0.0f  // top left
   };
+  unsigned int indices[] = {
+    0, 1, 3, // 1st triangle
+    1, 2, 3 //  2nd triangle
+  };
+    
 
   //Vertex Array Object
   //Need to create mem on GPU to store vertex data via Vertex Buffer Objects (VBOs)
   //create VBO and VAO
-  unsigned int VBO, VAO;
+  unsigned int VBO, VAO, EBO;
   glGenBuffers(1, &VBO);
   glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &EBO);
   //Bind it
   glBindVertexArray(VAO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -131,6 +156,10 @@ int main()
 //B:0   4   8   12   16  20   24   28   32   36
 //1. tell opengl how to interpret vertex data
 //               args: loc = 0, 3d, data type, normalized, stride, offset
+  //create our EBO from above
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
   glVertexAttribPointer(0,3,GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
@@ -145,12 +174,20 @@ int main()
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0,3);
+    //one triangle
+    //glDrawArrays(GL_TRIANGLES, 0,3);
+    //square
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   
     //call events, swap buffers
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
+  //delete resources when done
+  glDeleteVertexArrays(1, &VAO);
+  glDeleteBuffers(1, &VBO);
+  glDeleteBuffers(1, &EBO);
+  glDeleteProgram(shaderProgram);
   glfwTerminate();
   return 0;
 }
