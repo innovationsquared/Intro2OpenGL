@@ -178,7 +178,8 @@ int main()
     //glDrawArrays(GL_TRIANGLES, 0,3);
     //square
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-  
+    //polygon mode (apply to front and back of all triangles, draw as lines)
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     //call events, swap buffers
     glfwSwapBuffers(window);
     glfwPollEvents();
