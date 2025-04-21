@@ -66,6 +66,12 @@ int main()
   fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
   glCompileShader(fragmentShader);
+  glGetProgramiv(fragmentShader, GL_LINK_STATUS, &success);
+  if (!success)
+  {
+    glGetProgramInfoLog(fragmentShader, 512, NULL, infoLog);
+    printf("ERROR: FRAGMENT SHADER COMPILATION FAILED:%s\n", infoLog);
+  }
   //both shaders are created, now time to link them into a shader program for rendering
   unsigned int shaderProgram;
   shaderProgram = glCreateProgram();
@@ -100,22 +106,25 @@ int main()
   *    (-0.5,-0.5) <-------> (0.5,-0.5)
   */
   //this will be passed into the vertex shader to form the shape
-  float verticies[] = {
+  float vertices[] = {
     //x     y      z
     -0.5f, -0.5f, 0.0f, //bttm left
      0.5f, -0.5f, 0.0f, //bttm right
      0.0f,  0.5f, 0.0f //top
   };
 
+  //Vertex Array Object
   //Need to create mem on GPU to store vertex data via Vertex Buffer Objects (VBOs)
-  //create VBO
-  unsigned int VBO;
+  //create VBO and VAO
+  unsigned int VBO, VAO;
   glGenBuffers(1, &VBO);
+  glGenVertexArrays(1, &VAO);
   //Bind it
+  glBindVertexArray(VAO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   // any calls from now on effect our VBO
   // 0. copy verticies into buffer mem
-  glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
   //vertex buffer data (each x y z 32 bit (4byte))
   //| Vertex 1   | Vertex 2    | Vertex 3     |
   //| X | Y | Z  | X | Y | Z   |  X | Y | Z   |
@@ -125,10 +134,6 @@ int main()
   glVertexAttribPointer(0,3,GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
-  //Vertex Array Object:
-  unsigned int VAO;
-  glGenVertexArrays(1, &VAO);
-  glBindVertexArray(VAO);
 
   //rendering loop!
   while (!glfwWindowShouldClose(window))
