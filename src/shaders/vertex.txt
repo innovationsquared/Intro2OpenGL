@@ -7,9 +7,11 @@
 // our input has 3d coord, so vec3 (3d vec) named aPos
 //set location of input var
 layout (location = 0) in vec3 aPos;
+out vec4 vertexColor;
 
 void main()
 {
   //set output of vertex shader, whatever we set gl_position to will be output of vertex shader
   gl_position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+  vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // dark red
 }

@@ -1,19 +1,23 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <math.h>
 void processInput (GLFWwindow *window);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 const char *vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
+"out vec4 vertexColor;\n"
 "void main()\n"
 "{\n"
 "gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"vertexColor = vec4(0.5, 0.0, 0.0, 1.0);\n"
 "}\0";
 const char *fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
+"uniform vec4 ourColor;\n"
 "void main()\n"
 "{\n"
-"FragColor = vec4(1.0f,0.5f, 0.2f,1.0f);\n"
+"FragColor = ourColor;\n"
 "}\0";
 /*
 * The entry point into the OpenGL experiment.
@@ -135,6 +139,22 @@ int main()
     0, 1, 3, // 1st triangle
     1, 2, 3 //  2nd triangle
   };
+
+
+
+  //exercise 2
+  // float vertices[] = {
+  //   //x     y      z
+  // //   1st triangle
+  //   0.0f, -0.5f, 0.0f, //bttm left
+  //    1.0f, -0.5f, 0.0f, //bttm right
+  //    0.5f,  0.5f, 0.0f, //top
+  //    // 2nd
+  //    -1.0f, -0.5f, 0.0f, //bttm left
+  //    0.0f, -0.5f, 0.0f, //bttm right
+  //    -0.5f,  0.5f, 0.0f //top
+  // };
+  
     
 
   //Vertex Array Object
@@ -173,13 +193,19 @@ int main()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(shaderProgram);
+    float timeValue = glfwGetTime();
+    float greenValue = sin(timeValue) / 2.0f + 0.5f;
+    int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+    glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
     glBindVertexArray(VAO);
     //one triangle
     //glDrawArrays(GL_TRIANGLES, 0,3);
     //square
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     //polygon mode (apply to front and back of all triangles, draw as lines)
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //to turn off polygon:
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     //call events, swap buffers
     glfwSwapBuffers(window);
     glfwPollEvents();

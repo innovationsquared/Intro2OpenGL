@@ -1,7 +1,5 @@
 # Intro2OpenGL
-**A brief description of what this project does.**  
-_My journey with the learn OpenGL textbook._
-
+**My journey with the learn OpenGL textbook.**  
 
 ### Steps to Install
 
