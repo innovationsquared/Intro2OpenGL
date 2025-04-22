@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.10)
 project(Cals_renderer VERSION 0.0.1)
 set(OpenGL_GL_PREFERENCE GLVND)
 set(SOURCES
+src/config.h 
+src/config.cpp
 src/main.cpp
-src/glad.c)
+src/glad.c
+)
+
 include_directories(dependencies)
 add_executable(Cals_renderer ${SOURCES})
 find_package(glfw3 REQUIRED)

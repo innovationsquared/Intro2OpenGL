@@ -1,8 +1,4 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
-#include <math.h>
-#include <shader.h>
+#include "config.h"
 void processInput (GLFWwindow *window);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 /*
@@ -151,6 +147,7 @@ int main()
     // int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
     // glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
     ourShader.use();
+    //ourShader.setFloat("aPos", 1.0f);
     glBindVertexArray(VAO);
     //one triangle
     glDrawArrays(GL_TRIANGLES, 0,3);

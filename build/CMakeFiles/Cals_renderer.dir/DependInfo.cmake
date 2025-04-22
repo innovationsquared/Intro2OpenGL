@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/calvin/Documents/Programming/Intro2OpenGL/src/glad.c" "CMakeFiles/Cals_renderer.dir/src/glad.c.o" "gcc" "CMakeFiles/Cals_renderer.dir/src/glad.c.o.d"
+  "/home/calvin/Documents/Programming/Intro2OpenGL/src/config.cpp" "CMakeFiles/Cals_renderer.dir/src/config.cpp.o" "gcc" "CMakeFiles/Cals_renderer.dir/src/config.cpp.o.d"
   "/home/calvin/Documents/Programming/Intro2OpenGL/src/main.cpp" "CMakeFiles/Cals_renderer.dir/src/main.cpp.o" "gcc" "CMakeFiles/Cals_renderer.dir/src/main.cpp.o.d"
   "" "Cals_renderer" "gcc" "CMakeFiles/Cals_renderer.dir/link.d"
   )

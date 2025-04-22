@@ -2,6 +2,7 @@ Cals_renderer: \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crt1.o \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o \
   /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o \
+  CMakeFiles/Cals_renderer.dir/src/config.cpp.o \
   CMakeFiles/Cals_renderer.dir/src/main.cpp.o \
   CMakeFiles/Cals_renderer.dir/src/glad.c.o \
   /usr/lib64/libglfw.so.3.4 \
@@ -45,6 +46,8 @@ Cals_renderer: \
 /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o:
 
 /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o:
+
+CMakeFiles/Cals_renderer.dir/src/config.cpp.o:
 
 CMakeFiles/Cals_renderer.dir/src/main.cpp.o:
 

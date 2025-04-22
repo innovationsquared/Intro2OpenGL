@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Cals_renderer.dir/link.d"
+  "CMakeFiles/Cals_renderer.dir/src/config.cpp.o"
+  "CMakeFiles/Cals_renderer.dir/src/config.cpp.o.d"
   "CMakeFiles/Cals_renderer.dir/src/glad.c.o"
   "CMakeFiles/Cals_renderer.dir/src/glad.c.o.d"
   "CMakeFiles/Cals_renderer.dir/src/main.cpp.o"

@@ -72,10 +72,24 @@ include CMakeFiles/Cals_renderer.dir/flags.make
 CMakeFiles/Cals_renderer.dir/codegen:
 .PHONY : CMakeFiles/Cals_renderer.dir/codegen
 
+CMakeFiles/Cals_renderer.dir/src/config.cpp.o: CMakeFiles/Cals_renderer.dir/flags.make
+CMakeFiles/Cals_renderer.dir/src/config.cpp.o: /home/calvin/Documents/Programming/Intro2OpenGL/src/config.cpp
+CMakeFiles/Cals_renderer.dir/src/config.cpp.o: CMakeFiles/Cals_renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Cals_renderer.dir/src/config.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cals_renderer.dir/src/config.cpp.o -MF CMakeFiles/Cals_renderer.dir/src/config.cpp.o.d -o CMakeFiles/Cals_renderer.dir/src/config.cpp.o -c /home/calvin/Documents/Programming/Intro2OpenGL/src/config.cpp
+
+CMakeFiles/Cals_renderer.dir/src/config.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Cals_renderer.dir/src/config.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/calvin/Documents/Programming/Intro2OpenGL/src/config.cpp > CMakeFiles/Cals_renderer.dir/src/config.cpp.i
+
+CMakeFiles/Cals_renderer.dir/src/config.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Cals_renderer.dir/src/config.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/calvin/Documents/Programming/Intro2OpenGL/src/config.cpp -o CMakeFiles/Cals_renderer.dir/src/config.cpp.s
+
 CMakeFiles/Cals_renderer.dir/src/main.cpp.o: CMakeFiles/Cals_renderer.dir/flags.make
 CMakeFiles/Cals_renderer.dir/src/main.cpp.o: /home/calvin/Documents/Programming/Intro2OpenGL/src/main.cpp
 CMakeFiles/Cals_renderer.dir/src/main.cpp.o: CMakeFiles/Cals_renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Cals_renderer.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Cals_renderer.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cals_renderer.dir/src/main.cpp.o -MF CMakeFiles/Cals_renderer.dir/src/main.cpp.o.d -o CMakeFiles/Cals_renderer.dir/src/main.cpp.o -c /home/calvin/Documents/Programming/Intro2OpenGL/src/main.cpp
 
 CMakeFiles/Cals_renderer.dir/src/main.cpp.i: cmake_force
@@ -89,7 +103,7 @@ CMakeFiles/Cals_renderer.dir/src/main.cpp.s: cmake_force
 CMakeFiles/Cals_renderer.dir/src/glad.c.o: CMakeFiles/Cals_renderer.dir/flags.make
 CMakeFiles/Cals_renderer.dir/src/glad.c.o: /home/calvin/Documents/Programming/Intro2OpenGL/src/glad.c
 CMakeFiles/Cals_renderer.dir/src/glad.c.o: CMakeFiles/Cals_renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Cals_renderer.dir/src/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Cals_renderer.dir/src/glad.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Cals_renderer.dir/src/glad.c.o -MF CMakeFiles/Cals_renderer.dir/src/glad.c.o.d -o CMakeFiles/Cals_renderer.dir/src/glad.c.o -c /home/calvin/Documents/Programming/Intro2OpenGL/src/glad.c
 
 CMakeFiles/Cals_renderer.dir/src/glad.c.i: cmake_force
@@ -102,12 +116,14 @@ CMakeFiles/Cals_renderer.dir/src/glad.c.s: cmake_force
 
 # Object files for target Cals_renderer
 Cals_renderer_OBJECTS = \
+"CMakeFiles/Cals_renderer.dir/src/config.cpp.o" \
 "CMakeFiles/Cals_renderer.dir/src/main.cpp.o" \
 "CMakeFiles/Cals_renderer.dir/src/glad.c.o"
 
 # External object files for target Cals_renderer
 Cals_renderer_EXTERNAL_OBJECTS =
 
+Cals_renderer: CMakeFiles/Cals_renderer.dir/src/config.cpp.o
 Cals_renderer: CMakeFiles/Cals_renderer.dir/src/main.cpp.o
 Cals_renderer: CMakeFiles/Cals_renderer.dir/src/glad.c.o
 Cals_renderer: CMakeFiles/Cals_renderer.dir/build.make
@@ -116,7 +132,7 @@ Cals_renderer: /usr/lib64/libglfw.so.3.4
 Cals_renderer: /usr/lib64/libGLX.so
 Cals_renderer: /usr/lib64/libOpenGL.so
 Cals_renderer: CMakeFiles/Cals_renderer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Cals_renderer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Cals_renderer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Cals_renderer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
