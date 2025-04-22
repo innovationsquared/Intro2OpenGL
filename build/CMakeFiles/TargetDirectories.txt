@@ -1,3 +1,0 @@
-/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles/Cals_renderer.dir
-/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles/edit_cache.dir
-/home/calvin/Documents/Programming/Intro2OpenGL/build/CMakeFiles/rebuild_cache.dir

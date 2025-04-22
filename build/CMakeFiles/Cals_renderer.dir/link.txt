@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Cals_renderer.dir/link.d CMakeFiles/Cals_renderer.dir/src/config.cpp.o CMakeFiles/Cals_renderer.dir/src/main.cpp.o CMakeFiles/Cals_renderer.dir/src/glad.c.o -o Cals_renderer  /usr/lib64/libglfw.so.3.4 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so
