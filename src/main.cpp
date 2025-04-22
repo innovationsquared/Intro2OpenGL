@@ -147,9 +147,9 @@ int main()
   glEnableVertexAttribArray(2);
 
   //create texture
-  unsigned int texture;
-  glGenTextures(1, &texture);
-  glBindTexture(GL_TEXTURE_2D, texture);
+  unsigned int texture1, texture2;
+  glGenTextures(1, &texture1);
+  glBindTexture(GL_TEXTURE_2D, texture1);
   //texture parameters
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -169,7 +169,31 @@ int main()
     std::cout << "Texture load failed" << std::endl;
   }
   stbi_image_free(data);
+  glGenTextures(1, &texture2);
+  glBindTexture(GL_TEXTURE_2D, texture2);
+  //texture parameters
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_MIRRORED_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+  data = stbi_load("../resources/textures/steve.jpg", &width, &height, &nrChannels, 0);
+  if (data)
+  {
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+  }
+  else
+  {
+    std::cout << "Texture2 load failed" << std::endl;
+  }
+
+
+  ourShader.use();
+  glUniform1i(glGetUniformLocation(ourShader.ID, "texture1"), 0);
+  ourShader.setInt("texture2", 1);
 
   //rendering loop!
   while (!glfwWindowShouldClose(window))
@@ -183,9 +207,11 @@ int main()
     // float greenValue = sin(timeValue) / 2.0f + 0.5f;
     // int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
     // glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-    ourShader.use();
     //ourShader.setFloat("aPos", 1.0f);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, texture2);
     glBindVertexArray(VAO);
     //one triangle
     //glDrawArrays(GL_TRIANGLES, 0,3);
