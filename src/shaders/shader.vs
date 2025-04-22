@@ -14,6 +14,6 @@ out vec3 ourColor;
 void main()
 {
   //set output of vertex shader, whatever we set gl_position to will be output of vertex shader
-  gl_position = vec4(aPos, 1.0);
+  gl_Position = vec4(aPos, 1.0);
   ourColor = aColor; 
 }

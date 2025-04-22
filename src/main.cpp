@@ -2,24 +2,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <math.h>
+#include <shader.h>
 void processInput (GLFWwindow *window);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-const char *vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec3 aColor;\n"
-"out vec3 ourColor;\n"
-"void main()\n"
-"{\n"
-"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"ourColor = aColor;\n"
-"}\0";
-const char *fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"in vec3 ourColor;\n"
-"void main()\n"
-"{\n"
-"FragColor = vec4(ourColor,1.0);\n"
-"}\0";
 /*
 * The entry point into the OpenGL experiment.
 * The workflow for a triangle:
@@ -50,51 +35,7 @@ int main()
     printf("Failed to initialize GLAD");
     return -1;
   }
-
-  //create vertex shader
-  unsigned int vertexShader;
-  vertexShader = glCreateShader(GL_VERTEX_SHADER);
-  //attach shader code to shader object && compile (has to be compiled at runtime)
-  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-  glCompileShader(vertexShader);
-  //check for errors in shader creation
-  int success;
-  char infoLog[512];
-  glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-  if (!success)
-  {
-    glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-    printf("ERROR: SHADER VERTEX COMPILATION FAILED:%s\n", infoLog);
-  }
-  //create fragment shader, same kind of deal as vertex shader
-  unsigned int fragmentShader;
-  fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-  glCompileShader(fragmentShader);
-  glGetProgramiv(fragmentShader, GL_LINK_STATUS, &success);
-  if (!success)
-  {
-    glGetProgramInfoLog(fragmentShader, 512, NULL, infoLog);
-    printf("ERROR: FRAGMENT SHADER COMPILATION FAILED:%s\n", infoLog);
-  }
-  //both shaders are created, now time to link them into a shader program for rendering
-  unsigned int shaderProgram;
-  shaderProgram = glCreateProgram();
-  glAttachShader(shaderProgram, vertexShader);
-  glAttachShader(shaderProgram, fragmentShader);
-  glLinkProgram(shaderProgram);
-  //check for shader program errors
-  glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-  if (!success)
-  {
-    glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-    printf("ERROR: SHADER VERTEX COMPILATION FAILED:%s\n", infoLog);
-  }
-  //if no errors, 
- //now that they are linked, no need for the shader objects
-  glDeleteShader(vertexShader);
-  glDeleteShader(fragmentShader);
-
+  Shader ourShader("../src/shaders/shader.vs", "../src/shaders/shader.fs");
   /*create verticies for a simple triangle
   *               |(0,1)
   *               |
@@ -119,7 +60,7 @@ int main()
   // };
   //with colors
   float vertices[] = {
-    //x     y      z
+    //x     y      z     R     G     B
     -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, //bttm left
      0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, //bttm right
      0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f //top
@@ -205,11 +146,11 @@ int main()
     //rendering
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    glUseProgram(shaderProgram);
-    float timeValue = glfwGetTime();
-    float greenValue = sin(timeValue) / 2.0f + 0.5f;
-    int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-    glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+    // float timeValue = glfwGetTime();
+    // float greenValue = sin(timeValue) / 2.0f + 0.5f;
+    // int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+    // glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+    ourShader.use();
     glBindVertexArray(VAO);
     //one triangle
     glDrawArrays(GL_TRIANGLES, 0,3);
@@ -226,8 +167,7 @@ int main()
   //delete resources when done
   glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
-  glDeleteBuffers(1, &EBO);
-  glDeleteProgram(shaderProgram);
+  //glDeleteBuffers(1, &EBO);
   glfwTerminate();
   return 0;
 }
