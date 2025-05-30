@@ -7,9 +7,9 @@
    ```bash
    git clone https://github.com/innovationsquared/Intro2OpenGL.git
    ```
-2. **Make sure you have the required dependencies (apt-install, dnf, etc)**
+2. **Make sure you have the required dependencies **
    ```bash
-   sudo ____ install g++ cmake glfw-devel  
+   sudo (apt-install, dnf, etc) install g++ cmake glfw-devel  
    ```
 3. **Build the project**
     ```bash
