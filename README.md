@@ -7,7 +7,11 @@
    ```bash
    git clone https://github.com/innovationsquared/Intro2OpenGL.git
    ```
-2. **Build the project**
+2. **Make sure you have the required dependencies (apt-install, dnf, etc)**
+   ```bash
+   sudo ____ install g++ cmake glfw-devel  
+   ```
+3. **Build the project**
     ```bash
     chmod +x build.sh
     ./build.sh 
